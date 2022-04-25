@@ -43,23 +43,23 @@ const timestamp = dateStr => {
 }
 
 // Timestamp API endpoint
-// app.get("/api/timestamp/:date?", (req, res) => {
-//   res.json(timestamp(req.params.date))
-// })
-
-app.get("/api/timestamp/:timestamp", function(req, res){
-  let timestamp = req.params.timestamp;
-  if(timestamp.match(/\d{5,}/)){
-    timestamp = +timestamp;
-  }
-  let date = new Date(timestamp);
-  //console.log(date)
-  if(date.toUTCString() == "Invalid date"){
-    res.json({ error: data.toUTCString()})
-  }
-
-  res.json({ unix: date.valueOf(), utc: date.toUTCString()});
+app.get("/api/timestamp/:date?", (req, res) => {
+  res.json(timestamp(req.params.date))
 })
+
+// app.get("/api/timestamp/:timestamp", function(req, res){
+//   let timestamp = req.params.timestamp;
+//   if(timestamp.match(/\d{5,}/)){
+//     timestamp = +timestamp;
+//   }
+//   let date = new Date(timestamp);
+//   //console.log(date)
+//   if(date.toUTCString() == "Invalid date"){
+//     res.json({ error: data.toUTCString()})
+//   }
+
+//   res.json({ unix: date.valueOf(), utc: date.toUTCString()});
+// })
 
 app.get("/api/timestamp/", (req, res)=>{
   let date = new Date();
