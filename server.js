@@ -43,8 +43,13 @@ const timestamp = dateStr => {
 }
 
 // Timestamp API endpoint
-app.get("/api/timestamp/:date_string?", (req, res) => {
-  res.json(timestamp(req.params.date_string))
+app.get("/api/timestamp/:date?", (req, res) => {
+  res.json(timestamp(req.params.date))
+})
+
+app.get("/api/timestamp/", (req, res)=>{
+  let data = new Date();
+  res.json({unix:date.valueOf(), utc: date.toUTCString()})
 })
 
 //Ripon how are you
