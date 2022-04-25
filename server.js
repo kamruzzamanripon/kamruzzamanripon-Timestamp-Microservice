@@ -47,7 +47,7 @@ const timestamp = dateStr => {
 //   res.json(timestamp(req.params.date))
 // })
 
-app.get("/api/:timestamp", function(req, res){
+app.get("/api/timestamp/:timestamp", function(req, res){
   let timestamp = req.params.timestamp;
   if(timestamp.match(/\d{5,}/)){
     timestamp = +timestamp;
