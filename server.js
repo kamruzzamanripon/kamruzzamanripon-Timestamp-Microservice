@@ -47,57 +47,57 @@ const timestamp = dateStr => {
 //   res.json(timestamp(req.params.date))
 // })
 
-// app.get("/api/timestamp/:timestamp", function(req, res){
-//   let timestamp = req.params.timestamp;
-//   if(timestamp.match(/\d{5,}/)){
-//     timestamp = +timestamp;
-//   }
-//   let date = new Date(timestamp);
-//   //console.log(date)
-//   if(date.toUTCString() == "Invalid date"){
-//     res.json({ error: data.toUTCString()})
-//   }
+app.get("/api/:timestamp", function(req, res){
+  let timestamp = req.params.timestamp;
+  if(timestamp.match(/\d{5,}/)){
+    timestamp = +timestamp;
+  }
+  let date = new Date(timestamp);
+  //console.log(date)
+  if(date.toUTCString() == "Invalid date"){
+    res.json({ error: data.toUTCString()})
+  }
 
-//   res.json({ unix: date.valueOf(), utc: date.toUTCString()});
-// })
+  res.json({ unix: date.valueOf(), utc: date.toUTCString()});
+})
 
-// app.get("/api/timestamp/", (req, res)=>{
-//   let date = new Date();
-//   res.json({unix:date.valueOf(), utc: date.toUTCString()})
-// })
+app.get("/api/", (req, res)=>{
+  let date = new Date();
+  res.json({unix:date.valueOf(), utc: date.toUTCString()})
+})
 
 
-let responseObject = {}
+// let responseObject = {}
 
-app.get('/api/:input', (request, response) => {
-  let input = request.params.input
+// app.get('/api/:input', (request, response) => {
+//   let input = request.params.input
   
-  if(input.includes('-')){
-    /* Date String */
-    responseObject['unix'] = new Date(input).getTime()
-    responseObject['utc'] = new Date(input).toUTCString()
-  }else{
-    /* Timestamp */
-    input = parseInt(input)
+//   if(input.includes('-')){
+//     /* Date String */
+//     responseObject['unix'] = new Date(input).getTime()
+//     responseObject['utc'] = new Date(input).toUTCString()
+//   }else{
+//     /* Timestamp */
+//     input = parseInt(input)
     
-    responseObject['unix'] = new Date(input).getTime()
-    responseObject['utc'] = new Date(input).toUTCString()
-  }
+//     responseObject['unix'] = new Date(input).getTime()
+//     responseObject['utc'] = new Date(input).toUTCString()
+//   }
   
-  if(!responseObject['unix'] || !responseObject['utc']){
-    response.json({error: 'Invalid Date'})
-  }
+//   if(!responseObject['unix'] || !responseObject['utc']){
+//     response.json({error: 'Invalid Date'})
+//   }
   
   
-  response.json(responseObject)
-})
+//   response.json(responseObject)
+// })
 
-app.get('/api', (request, response) => {
-  responseObject['unix'] = new Date().getTime()
-  responseObject['utc'] = new Date().toUTCString()
+// app.get('/api', (request, response) => {
+//   responseObject['unix'] = new Date().getTime()
+//   responseObject['utc'] = new Date().toUTCString()
   
-  response.json(responseObject)
-})
+//   response.json(responseObject)
+// })
 //Ripon how are you
 // listen for requests :)
 var listener = app.listen(process.env.PORT, function () {
